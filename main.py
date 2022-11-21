@@ -1,3 +1,5 @@
+import argparse
+
 cache = {}
 
 def fibonacci(n):
@@ -12,8 +14,15 @@ def fibonacci(n):
     return res
 
 def print_fibonacci_n(n):
-    for i in range(n):
+    parser = argparse.ArgumentParser(
+        prog='Fibonacci calculator',
+        description='Compute n-th Fibonacci')
+    parser.add_argument('nth', type=int, help='The n-term of the fibonacci sucession')
+    args = parser.parse_args()
+    print(args.nth)
+
+    for i in range(args.nth):
         resultado = fibonacci(i)
         print(i, resultado)
 
-
+print_fibonacci_n(3)
